@@ -15,4 +15,4 @@ Em cada pasta encontram-se:
 
 ## Dojos realizados
 
-* [2015-07-02](2015-07-02): Store Credit
+* [2015-07-01](2015-07-01): Store Credit
