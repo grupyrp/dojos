@@ -36,11 +36,11 @@ Negativos:
 Participantes:
 ==============
 
-* Nathália Zago
-* [amirelemam](https://github.com/amirlemam)
+* [amirelemam](https://github.com/amirelemam)
 * [daneoshiga](https://github.com/daneoshiga)
 * [jessicatemporal](https://github.com/JTemporal)
 * [luanp](https://github.com/luanp)
+* [nathaliazago](https://github.com/nathaliazago)
 * [rougeth](https://github.com/rougeth)
 * [seocam](https://github.com/seocam)
 * [taisripa](https://github.com/taisripa)
