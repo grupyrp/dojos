@@ -23,6 +23,8 @@ Princípios usados para o andamento de cada dojo.
 * Nenhum código novo deve ser feito sem que todos os testes estejam passando.
 * Testes criados anteriormente não devem ser modificados.
 
+## Repositório:
+
 As pastas estão organizadas por data, seguindo o seguinte padrão:
 
 **yyyy-mm-dd**
