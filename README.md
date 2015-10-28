@@ -41,3 +41,4 @@ Em cada pasta encontram-se:
 * [2015-07-01](2015-07-01): Store Credit
 * [2015-07-27](2015-07-27): Fibonacci
 * [2015-10-07](2015-10-07): Jokenpo
+* [2015-10-21](2015-10-21): Batalha Naval
