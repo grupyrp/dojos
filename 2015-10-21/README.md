@@ -76,18 +76,18 @@ Negativos
 * vi
 * Não teve landing page
 * Atraso para começar
-* Python 2 
+* Python 2
 
 
 Participantes:
 --------------
 
-* @amirelemam
-* @andregirol
-* @guilhermetavares
-* @leoberdu
-* @luanp
-* @mawkee
-* @rafaelcassau
-* @rougeth
-* @seocam
+* [amirelemam](https://github.com/amirelemam)
+* [andregirol](https://github.com/andregirol)
+* [guilhermetavares](https://github.com/guilhermetavares)
+* [leoberdu](https://github.com/leoberdu)
+* [luanp](https://github.com/luanp)
+* [mawkee](https://github.com/mawkee)
+* [rafaelcassau](https://github.com/rafaelcassau)
+* [rougeth](https://github.com/rougeth)
+* [seocam](https://github.com/seocam)
