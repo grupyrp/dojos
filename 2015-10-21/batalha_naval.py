@@ -85,6 +85,22 @@ class BattleShipTest(unittest.TestCase):
         board.add_ships()
         self.assertFalse(board.game_over())
 
+    def test_plot_board(self):
+        board = Board(10, 10)
+        board_str = """------------
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+------------"""
+
 class Board(object):
 
     CARRIER = 1
@@ -133,7 +149,7 @@ class Board(object):
     def game_over(self):
         shipcount = sum(self.ships.values())
         hitcount = len(filter(lambda x: x[2], set(self.attacks)))
-        return not bool(hitcount - shipcount)
+        return hitcount == shipcount
 
 class BattleShip(object):
     size = [10, 10]
