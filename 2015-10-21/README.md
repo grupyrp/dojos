@@ -91,3 +91,8 @@ Participantes:
 * [rafaelcassau](https://github.com/rafaelcassau)
 * [rougeth](https://github.com/rougeth)
 * [seocam](https://github.com/seocam)
+
+Board recebe o ataque, recebendo as coordenadas e retornando True, False.
+O jogador pode ter um histórico dos seus ataques
+Se atingir, altera o valor na board
+Cada jogador tem sua board e a board dos tiros que acertou e errou, baseada na board do adversário

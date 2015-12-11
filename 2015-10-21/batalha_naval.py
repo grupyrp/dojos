@@ -38,7 +38,7 @@ class BattleShipTest(unittest.TestCase):
 
     def test_ship_count_with_ships(self):
         board = Board(10, 10)
-        board.add_ships(random_=True)
+        board.add_ships(_random=False)
         flat_board = list(itertools.chain(*board.matrix))
         for key, value in Board.ships.items():
             self.assertEqual(value, flat_board.count(key))
@@ -56,6 +56,34 @@ class BattleShipTest(unittest.TestCase):
         self.assertEqual(Board.SUBMARINE, 4)
         self.assertEqual(Board.PATROL_BOAT, 5)
 
+    def test_miss_attack(self):
+        board = Board(10, 10)
+        self.assertEqual(board.receive_attack(0, 0), False)
+
+    def test_hit_attack(self):
+        board = Board(10, 10)
+        board.add_ships()
+        self.assertEqual(board.receive_attack(0, 0), True)
+
+    def test_empty_attack_list(self):
+        board = Board(10, 10)
+        self.assertEqual(len(board.attacks), 0)
+
+    def test_insert_attack_list_empty_board(self):
+        board = Board(10, 10)
+        board.receive_attack(0, 0)
+        self.assertEqual(board.attacks[0], (0, 0, False))
+
+    def test_insert_attack_list_full_board(self):
+        board = Board(10, 10)
+        board.add_ships()
+        board.receive_attack(0, 0)
+        self.assertEqual(board.attacks[0], (0, 0, True))
+
+    def test_gameover_false(self):
+        board = Board(10, 10)
+        board.add_ships()
+        self.assertFalse(board.game_over())
 
 class Board(object):
 
@@ -77,13 +105,19 @@ class Board(object):
         self.cols = cols
         self.rows = rows
         self.create_matrix()
+        self.attacks = []
 
-    def add_ships(self, random_=False):
-        i = 0
-        for key, value in self.ships.items():
-            for idx in range(value):
-                self.matrix[idx][i] = key
-            i += 1
+    def add_ships(self, _random=False):
+        if _random:
+            pass
+            # fazer coisas bonitinhas
+        else:
+            i = 0
+            for key, value in self.ships.items():
+                for idx in range(value):
+                    self.matrix[idx][i] = key
+                i += 1
+
 
     def validate_pos(self, x, y):
         return self.matrix[x][y] == 0
@@ -91,6 +125,15 @@ class Board(object):
     def create_matrix(self):
         self.matrix = [[0 for i in range(self.cols)] for j in range(self.rows)]
 
+    def receive_attack(self, col, row):
+        value = self.matrix[col][row]
+        self.attacks.append((col, row, bool(value)))
+        return bool(value)
+
+    def game_over(self):
+        shipcount = sum(self.ships.values())
+        hitcount = len(filter(lambda x: x[2], set(self.attacks)))
+        return not bool(hitcount - shipcount)
 
 class BattleShip(object):
     size = [10, 10]
