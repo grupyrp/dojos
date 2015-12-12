@@ -23,76 +23,43 @@ precisa:
 * Informar quando um navio é atingido e quando ele é afundado;
 * Exibir ao final do jogo um mapa final do posicionamento final dos navios dos jogadores.
 
-Retrospectiva (21/10/2015):
-==========================
+Retrospectiva (11/12/2015):
+===========================
 
-Positivos:
-----------
+Positivos
+---------
 
-* Semaforo!!!!! \o/
-* Vim
-* Participação remota com tmate e hangout
+* Dojo não é democracia
+* Vários níveis de conhecimento
+* Compartilhar conhecimento
+* Avançamos muito no código (quase o dobro!)
+* Semaforo terminando verde
+* Uma nova participante
+* Demonstração de conceitos usados anteriormente
+* Semáforo funcionando em mais de um notebook
+* Cerveja e Pizza
+* Trilha sonora
+* Continuidade entre uma rodada e outra
+* Ataque funcionando, lista de ataques, gameover, início da plotagem da Board 
 
+Negativos
+---------
 
-Negativos:
-----------
+* Discussão inicial muito longa
+* Atraso para começar
+* Semáforo vermelho não funcionando
+* Python 2
+* Trilha sonora
+* Nenhum commit entre rodadas
 
-* Atraso
-* Pouca gente
-* Falta da discussão inicial do problema
-* Python2
 
 Participantes:
 --------------
 
 * [amirelemam](https://github.com/amirelemam)
 * [daneoshiga](https://github.com/daneoshiga)
-* [luanp](https://github.com/luanp)
+* [jessicatemporal](https://github.com/JTemporal)
+* [marianamioto](https://github.com/marianamioto)
 * [mawkee](https://github.com/mawkee)
 * [rougeth](https://github.com/rougeth)
 * [seocam](https://github.com/seocam)
-
-
-Retrospectiva (28/10/2015):
-===========================
-
-Positivos
----------
-
-* Novo lugar
-* Novos participantes
-* Melhores discussões
-* Compartilhar conhecimento
-* Avançamos muito no código
-* Galera aprendendo VI
-* Frontend dev no VI
-* Semaforo terminando verde
-* Participacao de membros remotos
-* Resolução da tela
-
-Negativos
----------
-
-* vi
-* Não teve landing page
-* Atraso para começar
-* Python 2
-
-
-Participantes:
---------------
-
-* [amirelemam](https://github.com/amirelemam)
-* [andregirol](https://github.com/andregirol)
-* [guilhermetavares](https://github.com/guilhermetavares)
-* [leoberdu](https://github.com/leoberdu)
-* [luanp](https://github.com/luanp)
-* [mawkee](https://github.com/mawkee)
-* [rafaelcassau](https://github.com/rafaelcassau)
-* [rougeth](https://github.com/rougeth)
-* [seocam](https://github.com/seocam)
-
-Board recebe o ataque, recebendo as coordenadas e retornando True, False.
-O jogador pode ter um histórico dos seus ataques
-Se atingir, altera o valor na board
-Cada jogador tem sua board e a board dos tiros que acertou e errou, baseada na board do adversário
