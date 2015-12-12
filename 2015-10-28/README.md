@@ -23,8 +23,8 @@ precisa:
 * Informar quando um navio é atingido e quando ele é afundado;
 * Exibir ao final do jogo um mapa final do posicionamento final dos navios dos jogadores.
 
-Retrospectiva:
-==============
+Retrospectiva (21/10/2015):
+==========================
 
 Positivos:
 ----------
@@ -43,11 +43,51 @@ Negativos:
 * Python2
 
 Participantes:
-==============
+--------------
 
 * [amirelemam](https://github.com/amirelemam)
 * [daneoshiga](https://github.com/daneoshiga)
 * [luanp](https://github.com/luanp)
 * [mawkee](https://github.com/mawkee)
+* [rougeth](https://github.com/rougeth)
+* [seocam](https://github.com/seocam)
+
+
+Retrospectiva (28/10/2015):
+===========================
+
+Positivos
+---------
+
+* Novo lugar
+* Novos participantes
+* Melhores discussões
+* Compartilhar conhecimento
+* Avançamos muito no código
+* Galera aprendendo VI
+* Frontend dev no VI
+* Semaforo terminando verde
+* Participacao de membros remotos
+* Resolução da tela
+
+Negativos
+---------
+
+* vi
+* Não teve landing page
+* Atraso para começar
+* Python 2
+
+
+Participantes:
+--------------
+
+* [amirelemam](https://github.com/amirelemam)
+* [andregirol](https://github.com/andregirol)
+* [guilhermetavares](https://github.com/guilhermetavares)
+* [leoberdu](https://github.com/leoberdu)
+* [luanp](https://github.com/luanp)
+* [mawkee](https://github.com/mawkee)
+* [rafaelcassau](https://github.com/rafaelcassau)
 * [rougeth](https://github.com/rougeth)
 * [seocam](https://github.com/seocam)

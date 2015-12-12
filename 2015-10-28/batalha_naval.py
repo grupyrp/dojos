@@ -2,6 +2,7 @@
 
 import itertools
 import unittest
+import random
 
 
 class BattleShipTest(unittest.TestCase):
@@ -30,25 +31,62 @@ class BattleShipTest(unittest.TestCase):
         board = Board(10, 10)
         assert board.matrix == matrix
 
-    def test_ship_counts(self):
-        ships = {
-            1: 5,   # porta-avioes
-            2: 4,   # encouracado
-            3: 3,   # destroier
-            4: 3,   # submarino
-            5: 2    # barco de patrulha
-        }
+    def test_ship_init_count(self):
         board = Board(10, 10)
         flat_board = list(itertools.chain(*board.matrix))
         assert flat_board.count(0) == 100
-        assert ships[1] == flat_board.count(1)
+
+    def test_ship_count_with_ships(self):
+        board = Board(10, 10)
+        board.add_ships(random_=True)
+        flat_board = list(itertools.chain(*board.matrix))
+        for key, value in Board.ships.items():
+            self.assertEqual(value, flat_board.count(key))
+
+    def test_validatepos(self):
+        board = Board(10, 10)
+        self.assertTrue(board.validate_pos(0, 0))
+        board.matrix[2][3] = 1
+        self.assertFalse(board.validate_pos(2, 3))
+
+    def test_constants(self):
+        self.assertEqual(Board.CARRIER, 1)
+        self.assertEqual(Board.BATTLESHIP, 2)
+        self.assertEqual(Board.DESTROYER, 3)
+        self.assertEqual(Board.SUBMARINE, 4)
+        self.assertEqual(Board.PATROL_BOAT, 5)
 
 
 class Board(object):
+
+    CARRIER = 1
+    BATTLESHIP = 2
+    DESTROYER = 3
+    SUBMARINE = 4
+    PATROL_BOAT = 5
+
+    ships = {
+        CARRIER: 5,   # porta-avioes
+        BATTLESHIP: 4,   # encouracado
+        DESTROYER: 3,   # destroier
+        SUBMARINE: 3,   # submarino
+        PATROL_BOAT: 2    # barco de patrulha
+    }
+
     def __init__(self, cols, rows):
         self.cols = cols
         self.rows = rows
         self.create_matrix()
+
+    def add_ships(self, random_=False):
+        i = 0
+        for key, value in self.ships.items():
+            for idx in range(value):
+                self.matrix[idx][i] = key
+            i += 1
+
+    def validate_pos(self, x, y):
+        return self.matrix[x][y] == 0
 
     def create_matrix(self):
         self.matrix = [[0 for i in range(self.cols)] for j in range(self.rows)]
