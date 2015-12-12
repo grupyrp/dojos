@@ -3,7 +3,7 @@
 import itertools
 import unittest
 import random
-
+from copy import copy
 
 class BattleShipTest(unittest.TestCase):
     def test_board_size(self):
@@ -39,6 +39,13 @@ class BattleShipTest(unittest.TestCase):
     def test_ship_count_with_ships(self):
         board = Board(10, 10)
         board.add_ships(_random=False)
+        flat_board = list(itertools.chain(*board.matrix))
+        for key, value in Board.ships.items():
+            self.assertEqual(value, flat_board.count(key))
+
+    def test_ship_random_count_with_ships(self):
+        board = Board(10, 10)
+        board.add_ships(_random=True)
         flat_board = list(itertools.chain(*board.matrix))
         for key, value in Board.ships.items():
             self.assertEqual(value, flat_board.count(key))
@@ -85,7 +92,7 @@ class BattleShipTest(unittest.TestCase):
         board.add_ships()
         self.assertFalse(board.game_over())
 
-    def test_plot_board(self):
+    def test_plot_empty_board(self):
         board = Board(10, 10)
         board_str = """------------
 |~~~~~~~~~~|
@@ -98,10 +105,50 @@ class BattleShipTest(unittest.TestCase):
 |~~~~~~~~~~|
 |~~~~~~~~~~|
 |~~~~~~~~~~|
+------------"""
+        self.assertEqual(board_str, board.plot())
+
+    def test_plot_full_board(self):
+        board = Board(10, 10)
+        board.add_ships()
+        board_str = """------------
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
 |~~~~~~~~~~|
 ------------"""
+        self.assertNotEqual(board_str, board.plot())
+
+    def test_add_ships(self):
+        board = Board(10, 10)
+        self.assertTrue(board.add_ship(0, 0, board.HORIZONTAL, board.CARRIER))
+        self.assertTrue(board.add_ship(1, 0, board.VERTICAL, board.BATTLESHIP))
+
+    def test_add_ships_same_place_fail(self):
+        board = Board(10, 10)
+        self.assertTrue(board.add_ship(0, 0, board.HORIZONTAL, board.CARRIER))
+        self.assertFalse(board.add_ship(0, 0, board.HORIZONTAL, board.CARRIER))
+
+    def test_fail_add_ships_out_of_boards(self):
+        board = Board(10, 10)
+        self.assertFalse(board.add_ship(10, 0, board.VERTICAL, board.SUBMARINE))
+        self.assertFalse(board.add_ship(9, 0, board.VERTICAL, board.CARRIER))
+
+    def test_matrix_fail_add_ships(self):
+        board = Board(10, 10)
+        matrix = copy(board.matrix)
+        board.add_ship(10, 0, board.VERTICAL, board.SUBMARINE)
+        self.assertEqual(matrix, board.matrix)
 
 class Board(object):
+    VERTICAL = 'vertical'
+    HORIZONTAL = 'horizontal'
 
     CARRIER = 1
     BATTLESHIP = 2
@@ -123,15 +170,46 @@ class Board(object):
         self.create_matrix()
         self.attacks = []
 
+    def add_ship(self, row, col, orientation, ship):
+        matrix = copy(self.matrix)
+        result = True
+        if (orientation == self.VERTICAL and row + self.ships[ship] > self.rows) or \
+           (orientation == self.HORIZONTAL and col + self.ships[ship] > self.cols):
+            return False
+
+        if orientation == self.HORIZONTAL:
+            for i in range(col, col + self.ships[ship]):
+                if self.matrix[row][i] == 0:
+                    self.matrix[row][i] = ship
+                else:
+                    result = False
+        else:
+            for i in range(row, row + self.ships[ship]):
+                if self.matrix[i][col] == 0:
+                    self.matrix[i][col] = ship
+                else:
+                    result = False
+
+        if not result:
+            self.matrix = matrix
+
+        return result
+
+
     def add_ships(self, _random=False):
         if _random:
-            pass
-            # fazer coisas bonitinhas
+            for key, value in self.ships.items():
+                consegui = False
+                while not consegui:
+                    x = random.randint(0, self.rows - 1)
+                    y = random.randint(0, self.cols - 1)
+                    orientation = random.choice([self.HORIZONTAL,
+                                                 self.VERTICAL])
+                    consegui = self.add_ship(x, y, orientation, key)
         else:
             i = 0
             for key, value in self.ships.items():
-                for idx in range(value):
-                    self.matrix[idx][i] = key
+                self.add_ship(i, 0, self.HORIZONTAL, key)
                 i += 1
 
 
@@ -150,6 +228,23 @@ class Board(object):
         shipcount = sum(self.ships.values())
         hitcount = len(filter(lambda x: x[2], set(self.attacks)))
         return hitcount == shipcount
+
+    def plot(self):
+        if list(itertools.chain(*self.matrix)).count(0) == 100:
+            return """------------
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+------------"""
+
+        return 'fuck'
 
 class BattleShip(object):
     size = [10, 10]
