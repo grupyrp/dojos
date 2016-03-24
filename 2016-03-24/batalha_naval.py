@@ -191,8 +191,10 @@ class Board(object):
         matrix = deepcopy(self.matrix)
         result = True
 
-        if (orientation == self.VERTICAL and row + self.ships[ship] > self.rows) or \
-           (orientation == self.HORIZONTAL and col + self.ships[ship] > self.cols):
+        ship_size = self.ships[ship]
+
+        if (orientation == self.VERTICAL and row + ship_size > self.rows) or \
+           (orientation == self.HORIZONTAL and col + ship_size > self.cols):
             return False
 
         if orientation == self.HORIZONTAL:
