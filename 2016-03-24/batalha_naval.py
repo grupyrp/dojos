@@ -141,19 +141,19 @@ class BattleShipTest(unittest.TestCase):
         board.add_ship(9, 9, board.HORIZONTAL, board.CARRIER)
         flat_board = list(itertools.chain(*board.matrix))
         self.assertEquals(100, flat_board.count(0))
-    
+
     def test_add_ship_colliding_ships_matrix_restore(self):
         board = Board(10, 10)
         board.add_ship(0, 1, board.HORIZONTAL, board.CARRIER)
         current_matrix = deepcopy(board.matrix)
-        
+
         board.add_ship(0, 0, board.HORIZONTAL, board.CARRIER)
         self.assertEquals(current_matrix, board.matrix)
 
-
     def test_fail_add_ships_out_of_boards(self):
         board = Board(10, 10)
-        self.assertFalse(board.add_ship(10, 0, board.VERTICAL, board.SUBMARINE))
+        self.assertFalse(board.add_ship(10, 0, board.VERTICAL,
+                                        board.SUBMARINE))
         self.assertFalse(board.add_ship(9, 0, board.VERTICAL, board.CARRIER))
 
     def test_matrix_fail_add_ships(self):
@@ -161,6 +161,7 @@ class BattleShipTest(unittest.TestCase):
         matrix = deepcopy(board.matrix)
         board.add_ship(10, 0, board.VERTICAL, board.SUBMARINE)
         self.assertEqual(matrix, board.matrix)
+
 
 class Board(object):
     VERTICAL = 'vertical'
@@ -189,10 +190,10 @@ class Board(object):
     def add_ship(self, row, col, orientation, ship):
         matrix = deepcopy(self.matrix)
         result = True
+
         if (orientation == self.VERTICAL and row + self.ships[ship] > self.rows) or \
            (orientation == self.HORIZONTAL and col + self.ships[ship] > self.cols):
             return False
-
 
         if orientation == self.HORIZONTAL:
             for i in range(col, col + self.ships[ship]):
@@ -214,7 +215,6 @@ class Board(object):
 
         return result
 
-
     def add_ships(self, _random=False):
         if _random:
             for key, value in self.ships.items():
@@ -230,7 +230,6 @@ class Board(object):
             for key, value in self.ships.items():
                 self.add_ship(i, 0, self.HORIZONTAL, key)
                 i += 1
-
 
     def validate_pos(self, x, y):
         return self.matrix[x][y] == 0
@@ -264,6 +263,7 @@ class Board(object):
 ------------"""
 
         return 'fuck'
+
 
 class BattleShip(object):
     size = [10, 10]
