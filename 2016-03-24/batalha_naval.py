@@ -21,7 +21,7 @@ class BattleShipTest(unittest.TestCase):
         assert board.rows == 10
 
     def test_create_board_small(self):
-        board = Board(2, 3)
+        board = Board(3, 2)
         matrix = [[0, 0],
                   [0, 0],
                   [0, 0]]
@@ -75,18 +75,18 @@ class BattleShipTest(unittest.TestCase):
 
     def test_empty_attack_list(self):
         board = Board(10, 10)
-        self.assertEqual(len(board.attacks), 0)
+        self.assertEqual(len(board.history), 0)
 
     def test_insert_attack_list_empty_board(self):
         board = Board(10, 10)
         board.receive_attack(0, 0)
-        self.assertEqual(board.attacks[0], (0, 0, False))
+        self.assertEqual(board.history[0], (0, 0, False))
 
     def test_insert_attack_list_full_board(self):
         board = Board(10, 10)
         board.add_ships()
         board.receive_attack(0, 0)
-        self.assertEqual(board.attacks[0], (0, 0, True))
+        self.assertEqual(board.history[0], (0, 0, True))
 
     def test_gameover_false(self):
         board = Board(10, 10)
@@ -110,21 +110,66 @@ class BattleShipTest(unittest.TestCase):
         self.assertEqual(board_str, board.plot())
 
     def test_plot_full_board(self):
-        board = Board(10, 10)
-        board.add_ships()
+        board = self._get_full_board()
         board_str = """------------
-|~~~~~~~~~~|
-|~~~~~~~~~~|
-|~~~~~~~~~~|
-|~~~~~~~~~~|
-|~~~~~~~~~~|
+|11111~~~~~|
+|2222~~~~~~|
+|333~~~~~~~|
+|444~~~~~~~|
+|55~~~~~~~~|
 |~~~~~~~~~~|
 |~~~~~~~~~~|
 |~~~~~~~~~~|
 |~~~~~~~~~~|
 |~~~~~~~~~~|
 ------------"""
-        self.assertNotEqual(board_str, board.plot())
+        self.assertEqual(board_str, board.plot())
+
+    def test_plot_full_board_with_shots(self):
+        board = self._get_full_board()
+        board.receive_attack(1, 1)
+        board.receive_attack(2, 2)
+        board.receive_attack(8, 0)
+        board.receive_attack(9, 0)
+        board.receive_attack(4, 1)
+        board.receive_attack(1, 4)
+
+        board_str = """------------
+|11111~~~~~|
+|2x22o~~~~~|
+|33x~~~~~~~|
+|444~~~~~~~|
+|5x~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|o~~~~~~~~~|
+|o~~~~~~~~~|
+------------"""
+        self.assertEqual(board_str, board.plot())
+
+    def test_plot_full_board_with_shots_without_ship(self):
+        board = self._get_full_board()
+        board.receive_attack(1, 1)
+        board.receive_attack(2, 2)
+        board.receive_attack(8, 0)
+        board.receive_attack(9, 0)
+        board.receive_attack(4, 1)
+        board.receive_attack(1, 4)
+
+        board_str = """------------
+|~~~~~~~~~~|
+|~x~~o~~~~~|
+|~~x~~~~~~~|
+|~~~~~~~~~~|
+|~x~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|~~~~~~~~~~|
+|o~~~~~~~~~|
+|o~~~~~~~~~|
+------------"""
+        self.assertEqual(board_str, board.plot(show_ships=False))
 
     def test_add_ships(self):
         board = Board(10, 10)
@@ -162,6 +207,15 @@ class BattleShipTest(unittest.TestCase):
         board.add_ship(10, 0, board.VERTICAL, board.SUBMARINE)
         self.assertEqual(matrix, board.matrix)
 
+    def _get_full_board(self):
+        board = Board(10, 10)
+        board.add_ship(0, 0, board.HORIZONTAL, board.CARRIER)
+        board.add_ship(1, 0, board.HORIZONTAL, board.BATTLESHIP)
+        board.add_ship(2, 0, board.HORIZONTAL, board.DESTROYER)
+        board.add_ship(3, 0, board.HORIZONTAL, board.SUBMARINE)
+        board.add_ship(4, 0, board.HORIZONTAL, board.PATROL_BOAT)
+        return board
+
 
 class Board(object):
     VERTICAL = 'vertical'
@@ -181,11 +235,12 @@ class Board(object):
         PATROL_BOAT: 2    # barco de patrulha
     }
 
-    def __init__(self, cols, rows):
+    def __init__(self, rows, cols):
         self.cols = cols
         self.rows = rows
         self.create_matrix()
-        self.attacks = []
+        self.history = []
+        self.attacks = {}
 
     def add_ship(self, row, col, orientation, ship):
         matrix = deepcopy(self.matrix)
@@ -239,17 +294,19 @@ class Board(object):
     def create_matrix(self):
         self.matrix = [[0 for i in range(self.cols)] for j in range(self.rows)]
 
-    def receive_attack(self, col, row):
-        value = self.matrix[col][row]
-        self.attacks.append((col, row, bool(value)))
+    def receive_attack(self, row, col):
+        value = self.matrix[row][col]
+        self.history.append((row, col, bool(value)))
+        key = '{}-{}'.format(row, col)
+        self.attacks[key] = bool(value)
         return bool(value)
 
     def game_over(self):
         shipcount = sum(self.ships.values())
-        hitcount = len(filter(lambda x: x[2], set(self.attacks)))
+        hitcount = len(filter(lambda x: x[2], set(self.history)))
         return hitcount == shipcount
 
-    def plot(self):
+    def plot(self, show_ships=True):
         if list(itertools.chain(*self.matrix)).count(0) == 100:
             return """------------
 |~~~~~~~~~~|
@@ -264,7 +321,29 @@ class Board(object):
 |~~~~~~~~~~|
 ------------"""
 
-        return 'fuck'
+        else:
+            plot = []
+            start = '-' * 12 + '\n'
+            end = '-' * 12
+            for ridx, row in enumerate(self.matrix):
+                plot.append('|')
+
+                for cidx, col in enumerate(row):
+                    key = '{}-{}'.format(ridx, cidx)
+                    if key in self.attacks:
+                        if self.attacks[key]:
+                            v = 'x'
+                        else:
+                            v = 'o'
+                    else:
+                        if show_ships:
+                            v = "~" if col == 0 else str(col)
+                        else:
+                            v = "~"
+                    plot.append(v)
+                plot.append('|\n')
+
+        return start + "".join(plot) + end
 
 
 class BattleShip(object):
