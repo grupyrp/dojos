@@ -74,6 +74,6 @@ Participantes:
 * [mawkee](https://github.com/mawkee)
 * [mdsrosa](https://github.com/mdsrosa)
 * [muriloviana](https://github.com/muriloviana)
-* [naygogh](https://github.com/naygogh)
+* [nayribeiro](https://github.com/nayribeiro)
 * [rougeth](https://github.com/rougeth)
 * [seocam](https://github.com/seocam)
