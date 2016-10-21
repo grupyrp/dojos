@@ -57,5 +57,5 @@ Participantes:
 * [danilomartins](https://github.com/mawkee)
 * [guilhermependezza](https://github.com/guilhermependezza)
 * [jessicatemporal](https://github.com/jtemporal)
-* [jonasbonfapelegrino](https://github.com/jonasbp)
+* [jonasbonfapelegrina](https://github.com/jonasbp)
 
