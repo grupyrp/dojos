@@ -42,3 +42,13 @@ Em cada pasta encontram-se:
 * [2015-07-27](2015-07-27): Fibonacci
 * [2015-10-07](2015-10-07): Jokenpo
 * [2015-10-21](2015-10-21): Batalha Naval
+* [2015-10-28](2015-10-28): Batalha Naval
+* [2015-12-11](2015-12-11): Batalha Naval
+* [2016-02-26](2016-02-26): Batalha Naval
+* [2016-03-24](2016-03-24): Batalha Naval
+* [2016-04-19](2016-04-19): Cheque por Extenso
+* [2016-06-02](2016-06-02): Cheque por Extenso
+* [2016-07-28](2016-07-28): Números Romanos
+* [2016-08-25](2016-08-25): Números Romanos
+* [2016-09-22](2016-09-22): Jokenpo
+* [2016-12-22](2016-12-22): Robot Simulator
