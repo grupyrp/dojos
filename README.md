@@ -52,3 +52,4 @@ Em cada pasta encontram-se:
 * [2016-08-25](2016-08-25): Números Romanos
 * [2016-09-22](2016-09-22): Jokenpo
 * [2016-12-22](2016-12-22): Robot Simulator
+* [2017-03-23](2017-03-23): Sequência Look and Say
