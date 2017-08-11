@@ -14,11 +14,11 @@ Princípios usados para o andamento de cada dojo.
 * Cada rodada dura 5 minutos.
 * Ao fim da rodada, o copiloto passa a ser piloto e um novo participante vira copiloto.
 * Após cada rodada deve ser discutido o que foi feito e quais os próximos passos.
-* Os outros participantes não devem interferir no no desenvolvimento durante a rodada.
+* Os outros participantes não devem interferir no desenvolvimento durante a rodada.
 
 ### Código:
 
-* A solução do problema deve seguir os preceitos do TDD.
+* A solução do problema deve seguir os preceitos do [TDD](https://pt.wikipedia.org/wiki/Test_Driven_Development).
 * Testes devem ser criados antes de funcionalidades, em "Baby Steps".
 * Nenhum código novo deve ser feito sem que todos os testes estejam passando.
 * Testes criados anteriormente não devem ser modificados.
@@ -53,3 +53,7 @@ Em cada pasta encontram-se:
 * [2016-09-22](2016-09-22): Jokenpo
 * [2016-12-22](2016-12-22): Robot Simulator
 * [2017-03-23](2017-03-23): Sequência Look and Say
+* [2017-04-19](2017-04-19): Poker
+* [2017-07-13](2017-07-13): Largest Product
+* [2017-08-10](2017-08-10): Um mundo pequeno (closest friends)
+
