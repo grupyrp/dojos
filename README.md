@@ -56,4 +56,5 @@ Em cada pasta encontram-se:
 * [2017-04-19](2017-04-19): Poker
 * [2017-07-13](2017-07-13): Largest Product
 * [2017-08-10](2017-08-10): Um mundo pequeno (closest friends)
+* [2017-09-06](2017-09-06): Matriz Espiral
 
