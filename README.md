@@ -58,3 +58,9 @@ Em cada pasta encontram-se:
 * [2017-08-10](2017-08-10): Um mundo pequeno (closest friends)
 * [2017-09-06](2017-09-06): Matriz Espiral
 * [2017-12-14](2017-12-14): Compatibilidade das Pizzas
+* [2018-02-01](2018-02-01): Log de banco
+* [2018-06-19](2018-06-19): Nuvem de fumaça
+* [2018-08-02](2018-08-02): Nuvem de fumaça 2
+* [2018-08-30](2018-08-30): Campo minado
+
+
