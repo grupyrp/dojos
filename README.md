@@ -63,5 +63,6 @@ Em cada pasta encontram-se:
 * [2018-08-02](2018-08-02): Nuvem de fumaça 2
 * [2018-08-30](2018-08-30): Campo minado
 * [2018-11-01](2018-11-01): Identificando Progressões Aritméticas
+* [2019-04-18](2019-04-18): Caixa eletrônico
 
 
