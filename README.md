@@ -65,5 +65,5 @@ Em cada pasta encontram-se:
 * [2018-11-01](2018-11-01): Identificando Progressões Aritméticas
 * [2019-04-18](2019-04-18): Caixa eletrônico
 * [2019-06-27](2019-06-27): Analisando URLs
-
-
+* [2019-08-29](2019-08-29): Matrix em Espiral
+* [2021-01-14](2021-01-14): Encontre o telefone
