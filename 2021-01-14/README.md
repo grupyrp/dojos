@@ -73,4 +73,4 @@ Participantes:
 * [muriloviana](https://github.com/muriloviana)
 * [raí bezerra]()
 * [russianbb](https://github.com/russianbb)
-* [wesley mendes]()
+* [WesGtoX](https://github.com/WesGtoX)
